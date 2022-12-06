@@ -54,9 +54,9 @@ FROM `account` a
 JOIN position p ON p.positionid= a.positionid
 GROUP BY a.positionid
 HAVING totalmember = (SELECT MIN(totalmember) FROM (SELECT COUNT(a.accountid) as totalmember
-												   FROM `account` a
-                                                   JOIN position p ON p.positionid= a.positionid
-												GROUP BY a.positionid) as totalmember2);
+                                                    FROM `account` a
+                                                    JOIN position p ON p.positionid= a.positionid
+						    GROUP BY a.positionid) as totalmember2);
 
 SELECT d.departmentname, COUNT(a.accountid)
 FROM `account` a
