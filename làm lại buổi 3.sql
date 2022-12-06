@@ -15,9 +15,17 @@ SELECT *
 FROM `account`
 WHERE length(fullname)= (SELECT MAX(length(fullname)) FROM `account`);
 
+--cach 2--
+SELECT *, length(fullname)  as sokytu1 
+FROM `account`
+Having length(fullname) = (select max(sokytu)
+			  from  (sELECT length(fullname) as sokytu
+			 FROM account) as t);
+
 SELECT *
 FROM `account`
 WHERE length(fullname)= (SELECT MAX(length(fullname)) FROM `account`) AND departmentid=3;
+
 
 SELECT groupname
 FROM `group`
@@ -27,33 +35,29 @@ SELECT examid
 FROM `exam` 
 WHERE duration >= 60 AND createddate < '2019-12-20';
 
+
 SELECT groupname
 FROM `group`
 ORDER BY createddate DESC
 LIMIT 5;
+
 
 SELECT COUNT(accountid)
 FROM `account` a
 JOIN department d ON d.departmentid= a.departmentid
 WHERE a.departmentid=2;
 
+
 SELECT fullname
 FROM `account`
 WHERE fullname LIKE 'D%o';
+
 
 UPDATE `account`
 SET fullname = 'Nguyễn Bá Lộc', email= 'loc.nguyenba@vti.com.vn'
 WHERE accountid=5 ;
 
-SELECT *, length(fullname)  as sokytu1   --  nguyễn    6    8
-FROM `account`
-Having length(fullname) = (select max(sokytu)
-					from  (sELECT length(fullname) as sokytu
-							FROM account) as t);
 
-select max(sokytu)
-from  (sELECT char_length(fullname) as sokytu
-FROM account) as t;
 
 
 
